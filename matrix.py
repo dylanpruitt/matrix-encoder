@@ -15,6 +15,13 @@ class Matrix:
         self.columns = columns
         self.__create_blank_matrix(rows, columns)
 
+    def set_matrix_values(self, values):
+        self.matrix.clear()
+        for i in range(self.rows):
+            for j in range(self.columns):
+                if self.columns*i + j < len(values):
+                    self.matrix.append(Element(i, j, values[self.columns*i + j]))
+
     def __create_blank_matrix(self, rows, columns):
         for i in range(rows):
             for j in range(columns):
