@@ -31,5 +31,17 @@ class Encoder:
 
             for element in encoded_matrix.matrix:
                 encoded_message.append(element.value)
+        if len(self.message_list) % 3 > 0:
+            message_chunk = self.message_list[
+                            number_of_chunks * self.chunk_size: (number_of_chunks * self.chunk_size) + self.chunk_size]
+            for i in range(3 - len(message_chunk)):
+                message_chunk.append(-1)
+            matrix = Matrix(3, 1)
+            matrix.set_matrix_values(message_chunk)
+
+            encoded_matrix = self.encoder_matrix.__mul__(matrix)
+
+            for element in encoded_matrix.matrix:
+                encoded_message.append(element.value)
 
         return encoded_message
